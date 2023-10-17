@@ -260,7 +260,6 @@ public class JCalc extends JFrame {
 					txtCalc.setText(result);
 					txtResult.setText("");
 					valor1 = result;
-					valor2 = "";
 				}
 				catch (NumberFormatException e1) {
 					txtCalc.setText(valor1);
@@ -356,6 +355,7 @@ public class JCalc extends JFrame {
 		double numero = 0;
 		if (ultimoBotao.getText().equals("=")) {
 			valores = new Calculo(new ArrayList<>(), new ArrayList<>());
+			valor2 = "";
 			count = 0;
 		}
 		try {
@@ -411,9 +411,16 @@ public class JCalc extends JFrame {
 	
 	private Valores getResult() {
 		Valores calc = null;
+		String ultimaOperacao;
 		List <Double> valorCalc = new ArrayList<>(valores.listaValores);
 		List <String> opCalc = new ArrayList<>(valores.listaOperadores);
-		
+		try {
+			ultimaOperacao = opCalc.get(opCalc.size() - 1);
+		}
+		catch (IndexOutOfBoundsException e4) {
+			return null;
+		}
+
 		while (opCalc.size() > 0) {
 			int index = 0;
 			String operacao = "";
@@ -432,7 +439,7 @@ public class JCalc extends JFrame {
 						break;
 					}
 				}
-			}			
+			}
 			try {
 				if (operacao.contains("+")) {
 					calc = new Calculo(valorCalc.get(index), valorCalc.get(index+1), new Soma());
@@ -454,6 +461,13 @@ public class JCalc extends JFrame {
 			opCalc.remove(index);
 			valorCalc.remove(index);
 			valorCalc.set(index, calc.getResultado());
+		}
+		if (ultimoBotao.getText().equals("=")) {
+			valores.listaValores = new ArrayList<>();
+			valores.listaValores.add(calc.getResultado());
+			valores.listaValores.add(Double.parseDouble(valor2));
+			valores.listaOperadores = new ArrayList<>();
+			valores.listaOperadores.add(ultimaOperacao);
 		}
 		return calc;
 	}
