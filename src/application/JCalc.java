@@ -342,17 +342,14 @@ public class JCalc extends JFrame {
 		if (calc == null) {
 			return;
 		}
-
 		result = Double.toString(calc.getResultado());
-
 		if (calc.getResultado() == Double.POSITIVE_INFINITY) {
 			result = "";
 		}	
 		else if (calc.getResultado() % 1 == 0) {
 			result = Integer.toString((int) calc.getResultado());
 		}
-			txtResult.setText(result);
-		
+			txtResult.setText(result);		
 	}
 	
 	private void setOperation(JTextField txtResult, String operacao) {
@@ -363,7 +360,6 @@ public class JCalc extends JFrame {
 		}
 		try {
 			if (!operacao.equals("-") && valor1.equals("")) {
-				System.out.println("tchau!!!!");
 				return;
 			}		
 			else if (opCheck && "/*+".contains(valores.listaOperadores.get(count - 1)) && operacao.equals("-") && valor2.equals("")) {
@@ -387,13 +383,11 @@ public class JCalc extends JFrame {
 		}
 		catch (IndexOutOfBoundsException e2) {
 			return;
-		}
-	
+		}	
 		if (operacao.equals("-") && valor1.equals("")) {
 			valor1 = "-";
 			expressao = expressao.concat(valor1);
 		}
-
 		else {
 			if (valor2.equals("")) {
 				numero = Double.parseDouble(valor1);
@@ -419,7 +413,7 @@ public class JCalc extends JFrame {
 		Valores calc = null;
 		List <Double> valorCalc = new ArrayList<>(valores.listaValores);
 		List <String> opCalc = new ArrayList<>(valores.listaOperadores);
-
+		
 		while (opCalc.size() > 0) {
 			int index = 0;
 			String operacao = "";
