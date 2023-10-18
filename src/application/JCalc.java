@@ -321,11 +321,11 @@ public class JCalc extends JFrame {
 				valores.listaValores.set(count, Double.parseDouble(valor2));
 			}		
 		}
-		if (valor1.length() > 1 && valor1.startsWith("0") && !valor1.contains(".")) {
+		if (valor1.length() > 0 && valor1.startsWith("0") && !valor1.contains(".")) {
 			valor1 = valor1.substring(1);
 			return;
 		}
-		if (valor2.length() > 1 && valor2.startsWith("0") && !valor2.contains(".")) {
+		if (valor2.length() > 0 && valor2.startsWith("0") && !valor2.contains(".")) {
 			valor2 = valor2.substring(1);
 			return;
 		}
