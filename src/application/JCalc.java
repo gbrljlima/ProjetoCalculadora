@@ -23,13 +23,15 @@ import aula.operation.Divisao;
 import aula.operation.Multiplicacao;
 import aula.operation.Soma;
 import aula.operation.Subtracao;
+import javax.swing.JLabel;
+import javax.swing.border.BevelBorder;
 
 public class JCalc extends JFrame {
 
 	private JPanel contentPane;
 	private String valor1 = "";
 	private String valor2 = "";
-	private JTextField txtCalc;
+	private JLabel lblCalc;
 	private String expressao = "";
 	private String result = "";
 	private JButton ultimoBotao;
@@ -67,21 +69,20 @@ public class JCalc extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JTextField txtResult = new JTextField("");
-		txtResult.setEditable(false);
-		txtResult.setForeground(Color.BLACK);
-		txtResult.setBackground(SystemColor.text);
-		txtResult.setFont(new Font("Arial", Font.BOLD, 20));
-		txtResult.setHorizontalAlignment(SwingConstants.RIGHT);
-		txtResult.setBounds(10, 43, 210, 33);
-		contentPane.add(txtResult);
+		JLabel lblResult = new JLabel("");
+		lblResult.setForeground(new Color(0, 0, 0));
+		lblResult.setBackground(SystemColor.text);
+		lblResult.setFont(new Font("Arial", Font.BOLD, 20));
+		lblResult.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblResult.setBounds(10, 43, 210, 33);
+		contentPane.add(lblResult);
 		
 		JButton btn0 = new JButton("0");
 		btn0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setNumero(btn0.getText());
 				Valores calc = getResult();
-				setTextResult(txtResult, calc);
+				setTextResult(lblResult, calc);
 			}
 		});
 		btn0.setBounds(10, 247, 50, 50);
@@ -92,7 +93,7 @@ public class JCalc extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setNumero(btn3.getText());
 				Valores calc = getResult();
-				setTextResult(txtResult, calc);
+				setTextResult(lblResult, calc);
 			}
 		});
 		btn3.setBounds(10, 197, 50, 50);
@@ -103,7 +104,7 @@ public class JCalc extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setNumero(btn2.getText());
 				Valores calc = getResult();
-				setTextResult(txtResult, calc);
+				setTextResult(lblResult, calc);
 			}
 		});
 		btn2.setBounds(60, 197, 50, 50);
@@ -114,7 +115,7 @@ public class JCalc extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setNumero(btn1.getText());
 				Valores calc = getResult();
-				setTextResult(txtResult, calc);
+				setTextResult(lblResult, calc);
 			}
 		});
 		btn1.setBounds(110, 197, 50, 50);
@@ -125,7 +126,7 @@ public class JCalc extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setNumero(btn4.getText());
 				Valores calc = getResult();
-				setTextResult(txtResult, calc);
+				setTextResult(lblResult, calc);
 			}
 		});
 		btn4.setBounds(110, 147, 50, 50);
@@ -136,7 +137,7 @@ public class JCalc extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setNumero(btn5.getText());
 				Valores calc = getResult();
-				setTextResult(txtResult, calc);
+				setTextResult(lblResult, calc);
 			}
 		});
 		btn5.setBounds(60, 147, 50, 50);
@@ -147,7 +148,7 @@ public class JCalc extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setNumero(btn6.getText());
 				Valores calc = getResult();
-				setTextResult(txtResult, calc);
+				setTextResult(lblResult, calc);
 			}
 		});
 		btn6.setBounds(10, 147, 50, 50);
@@ -158,7 +159,7 @@ public class JCalc extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setNumero(btn9.getText());
 				Valores calc = getResult();
-				setTextResult(txtResult, calc);
+				setTextResult(lblResult, calc);
 			}
 		});
 		btn9.setBounds(10, 97, 50, 50);
@@ -169,7 +170,7 @@ public class JCalc extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setNumero(btn8.getText());
 				Valores calc = getResult();
-				setTextResult(txtResult, calc);
+				setTextResult(lblResult, calc);
 			}
 		});
 		btn8.setBounds(60, 97, 50, 50);
@@ -180,7 +181,7 @@ public class JCalc extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setNumero(btn7.getText());
 				Valores calc = getResult();
-				setTextResult(txtResult, calc);
+				setTextResult(lblResult, calc);
 			}
 		});
 		btn7.setBounds(110, 97, 50, 50);
@@ -202,7 +203,7 @@ public class JCalc extends JFrame {
 				
 				setNumero(numero);
 				Valores calc = getResult();
-				setTextResult(txtResult, calc);
+				setTextResult(lblResult, calc);
 			}
 		});
 		btnDot.setBounds(60, 247, 50, 50);
@@ -211,7 +212,7 @@ public class JCalc extends JFrame {
 		JButton btnSum = new JButton("+");
 		btnSum.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setOperation(txtResult, btnSum.getText());
+				setOperation(lblResult, btnSum.getText());
 			}
 		});
 		btnSum.setBounds(170, 97, 50, 33);
@@ -220,7 +221,7 @@ public class JCalc extends JFrame {
 		JButton btnSubtract = new JButton("-");
 		btnSubtract.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setOperation(txtResult, btnSubtract.getText());
+				setOperation(lblResult, btnSubtract.getText());
 			}
 		});
 		btnSubtract.setBounds(170, 130, 50, 33);
@@ -229,7 +230,7 @@ public class JCalc extends JFrame {
 		JButton btnMultiply = new JButton("*");
 		btnMultiply.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setOperation(txtResult, btnMultiply.getText());
+				setOperation(lblResult, btnMultiply.getText());
 			}
 		});
 		btnMultiply.setBounds(170, 163, 50, 33);
@@ -238,7 +239,7 @@ public class JCalc extends JFrame {
 		JButton btnDivide = new JButton("/");
 		btnDivide.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setOperation(txtResult, btnDivide.getText());
+				setOperation(lblResult, btnDivide.getText());
 			}
 		});
 		btnDivide.setBounds(170, 196, 50, 33);
@@ -256,16 +257,16 @@ public class JCalc extends JFrame {
 					if (calc.getResultado() == Double.POSITIVE_INFINITY) {
 						JOptionPane.showMessageDialog(null, "Não é possível dividir por 0!", "ERRO", JOptionPane.ERROR_MESSAGE);
 					}
-					setTextResult(txtResult, calc);
-					txtCalc.setText(result);
-					txtResult.setText("");
+					setTextResult(lblResult, calc);
+					lblCalc.setText(result);
+					lblResult.setText("");
 					valor1 = result;
 				}
 				catch (NumberFormatException e1) {
-					txtCalc.setText(valor1);
+					lblCalc.setText(valor1);
 				}
 				catch (NullPointerException e1) {
-					txtCalc.setText(valor1);
+					lblCalc.setText(valor1);
 				}
 				expressao = valor1;
 				opCheck = false;
@@ -278,21 +279,30 @@ public class JCalc extends JFrame {
 		btnCE.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limpar();
-				txtResult.setText("");
-				txtCalc.setText("0");
+				lblResult.setText("");
+				lblCalc.setText("0");
 			}
 		});
 		btnCE.setBounds(170, 262, 50, 33);
 		contentPane.add(btnCE);
 		
-		txtCalc = new JTextField("0");
-		txtCalc.setHorizontalAlignment(SwingConstants.RIGHT);
-		txtCalc.setForeground(Color.BLACK);
-		txtCalc.setFont(new Font("Arial", Font.BOLD, 20));
-		txtCalc.setEditable(false);
-		txtCalc.setBackground(SystemColor.text);
-		txtCalc.setBounds(10, 11, 210, 33);
-		contentPane.add(txtCalc);
+		lblCalc = new JLabel("0");
+		lblCalc.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblCalc.setForeground(Color.BLACK);
+		lblCalc.setFont(new Font("Arial", Font.BOLD, 20));
+		lblCalc.setBackground(SystemColor.text);
+		lblCalc.setBounds(10, 11, 210, 33);
+		contentPane.add(lblCalc);
+		
+		JPanel panel = new JPanel();
+		panel.setBounds(216, 78, -212, -34);
+		contentPane.add(panel);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		panel_1.setBackground(new Color(255, 255, 255));
+		panel_1.setBounds(10, 11, 216, 65);
+		contentPane.add(panel_1);
 	}
 	
 	private void limpar() {
@@ -321,21 +331,21 @@ public class JCalc extends JFrame {
 				valores.listaValores.set(count, Double.parseDouble(valor2));
 			}		
 		}
-		if (valor1.length() > 0 && valor1.startsWith("0") && !valor1.contains(".")) {
+		if (valor1.length() > 0 && valor1.startsWith("0") && !valor1.contains(".") && !opCheck) {
 			valor1 = valor1.substring(1);
 			return;
 		}
-		if (valor2.length() > 0 && valor2.startsWith("0") && !valor2.contains(".")) {
+		if (valor2.length() > 1 && valor2.startsWith("0") && !valor2.contains(".")) {
 			valor2 = valor2.substring(1);
 			return;
 		}
 		ultimoBotao = new JButton("'");
 		expressao = expressao.concat(numero);
-		txtCalc.setText(expressao);
+		lblCalc.setText(expressao);
 		opCheck = false;
 	}
 	
-	private void setTextResult(JTextField txtResult, Valores calc) {
+	private void setTextResult(JLabel txtResult, Valores calc) {
 		result = valor1;
 		txtResult.setText(result);
 		if (calc == null) {
@@ -351,7 +361,7 @@ public class JCalc extends JFrame {
 			txtResult.setText(result);		
 	}
 	
-	private void setOperation(JTextField txtResult, String operacao) {
+	private void setOperation(JLabel txtResult, String operacao) {
 		double numero = 0;
 		if (ultimoBotao.getText().equals("=")) {
 			valores = new Calculo(new ArrayList<>(), new ArrayList<>());
@@ -365,7 +375,7 @@ public class JCalc extends JFrame {
 			else if (opCheck && "/*+".contains(valores.listaOperadores.get(count - 1)) && operacao.equals("-") && valor2.equals("")) {
 				valor2 = "-";
 				expressao = expressao.concat(valor2);
-				txtCalc.setText(expressao); 
+				lblCalc.setText(expressao); 
 				return;
 			}	
 			else if ("/*+-".contains(ultimoBotao.getText())) {
@@ -374,7 +384,7 @@ public class JCalc extends JFrame {
 				}
 				valores.listaOperadores.set(count - 1, operacao);
 				expressao = expressao.substring(0, expressao.length() - 1).concat(operacao);
-				txtCalc.setText(expressao);
+				lblCalc.setText(expressao);
 				return;
 			}
 			else if (opCheck) {
@@ -404,7 +414,7 @@ public class JCalc extends JFrame {
 		}		
 		ultimoBotao = new JButton(operacao);
 		valor2 = "";
-		txtCalc.setText(expressao);
+		lblCalc.setText(expressao);
 		txtResult.setText(result);
 		opCheck = true;
 	}
